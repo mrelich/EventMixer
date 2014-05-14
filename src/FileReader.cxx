@@ -12,6 +12,7 @@ FileReader::FileReader(string filename)
   // Open file
   m_input.open(filename.c_str(), ifstream::in);
 
+
 }
 
 //------------------------------------------//
@@ -92,8 +93,60 @@ void FileReader::setParticles(vector<Particle*> &parts)
 }
 
 //------------------------------------------//
+// Set random event
+//------------------------------------------//
+bool FileReader::setRandom(int evtNum)
+{
+
+  // We want the ability to randomly select
+  // an event number so we can mix the events
+  // as we please. 
+  
+  // Go to the beginning of the file
+  m_input.seekg(m_input.beg);
+
+  // The key we are looking for
+  string event  = "Event:";
+  int thisEvent = 0;
+
+  // Now loop and search for event num
+  int prevPos = 0;
+  while( !m_input.eof() ){
+    
+    // Specify some generic char vector
+    char buf[512];
+    
+    // Get the line
+    prevPos = m_input.tellg();
+    m_input.getline(buf, 512);    
+    
+    // Now parse the buffer
+    const char* tokens[3] = {};
+    tokens[0] = strtok(buf, " ");
+
+    if( event.compare(tokens[0]) == 0 ){
+      tokens[1] = strtok(0, " ");
+      thisEvent = atoi(tokens[1]);
+      if( thisEvent == evtNum ){
+	//cout<<"\t\t Have event: "<<thisEvent<<endl;
+	m_input.seekg(prevPos);
+	return true;
+      }
+    }
+
+  }// end while loop
+
+
+  // If we are here, the event doesn't exist.
+  // return false and search for another one.
+  return false;
+
+}
+
+//------------------------------------------//
 // Main
 //------------------------------------------//
+/*
 int main()
 {
 
@@ -114,11 +167,24 @@ int main()
       particles.at(j)->print();
   }
 
-  // CLean up left over particles
+  // Test random properties
+  cout<<"------ Getting event: 100 ------"<<endl;
+  fRead->setRandom(100);
+  fRead->setParticles(particles);
+  cout<<"Loaded: "<<particles.size()<<endl;
+  particles.at(0)->print();
+  cout<<"------ Getting event: 50 ------"<<endl;
+  fRead->setRandom(50);
+  fRead->setParticles(particles);
+  cout<<"Loaded: "<<particles.size()<<endl;
+  particles.at(0)->print();
+
+  // Clean up left over particles
   for(uint j=0; j<particles.size(); ++j)
     delete particles.at(j);
   particles.clear();
-  
+
+
   // Delete
   delete fRead;
   
@@ -126,3 +192,4 @@ int main()
 
 
 }
+*/

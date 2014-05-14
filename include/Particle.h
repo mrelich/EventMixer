@@ -6,26 +6,56 @@
 // makes the code cleaner.                             //
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
 
+#include "TObject.h"
 #include <iostream>
 
-class Particle
+class Particle : public TObject
 {
   
  public:
   
   // Constructor
+  Particle(){};
   Particle(float xi, float yi, float zi,
 	   float xf, float yf, float zf,
-	   float E, int trkID, int pdg);
+	   float E, int trkID, int pdg){
+    // Set Variables                                                                                
+    m_xi    = xi;
+    m_yi    = yi;
+    m_zi    = zi;
+    m_xf    = xf;
+    m_yf    = yf;
+    m_zf    = zf;
+    m_E     = E;
+    m_trkID = trkID;
+    m_pdg   = pdg;
+  };
   
   // Destructor
   virtual ~Particle(){};
 
   // Clear method
-  void clear();
+  void clear(){
+    m_xi    = 0;
+    m_yi    = 0;
+    m_zi    = 0;
+    m_xf    = 0;
+    m_yf    = 0;
+    m_zf    = 0;
+    m_E     = 0;
+    m_trkID = 0;
+    m_pdg   = 0;
+  };
 
   // Print properties
-  void print();
+  void print(){
+    std::cout<<"--------------"<<std::endl;
+    std::cout<<"(xi,yi,zi) = ("<<m_xi<<","<<m_yi<<","<<m_zi<<")"<<std::endl;
+    std::cout<<"(xf,yf,zf) = ("<<m_xf<<","<<m_yf<<","<<m_zf<<")"<<std::endl;
+    std::cout<<"E          =  "<<m_E<<std::endl;
+    std::cout<<"trkID      =  "<<m_trkID<<std::endl;
+    std::cout<<"pdg        =  "<<m_pdg<<std::endl;
+  }
 
   // Accessor methods
   float XI()   { return m_xi;    };
@@ -37,6 +67,8 @@ class Particle
   float E()    { return m_E;     };
   float trkID(){ return m_trkID; };
   float pdg()  { return m_pdg;   };
+
+  ClassDef(Particle, 1);
 
  private:
 

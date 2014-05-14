@@ -30,18 +30,16 @@ class FileReader
   FileReader(std::string filename);
   virtual ~FileReader();
 
-  // Accessors
+  // Set the next events particles
   void setParticles(std::vector<Particle*> &parts);
+  
+  // Set random Event
+  bool setRandom(int evtNum);
 
  private:
   
-  // Method to load next particle
-  Particle* getNextParticle();  
-
   std::ifstream m_input;    // the input file
   
-
-
 };
 
 #endif

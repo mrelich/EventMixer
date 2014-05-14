@@ -1,3 +1,12 @@
+2014-05-14 Matt:
+	* Changing file readers purpose to convert into TTree
+		Benefit is that it compresses the data from ~300GB to ~1GB
+	* Add TreeMaker
+	* Add Event class
+	* Change Particle class to inhert from TObject
+	* Add Linkdef(s) for compilation
+	* remove Particle.cxx
+
 2014-05-10 Matt:
 	* Adding file reader and particle class
 	* Creating structure
