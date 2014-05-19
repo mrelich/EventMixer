@@ -6,6 +6,7 @@
 	* Change Particle class to inhert from TObject
 	* Add Linkdef(s) for compilation
 	* remove Particle.cxx
+	* Added functionality for TreeMaker
 
 2014-05-10 Matt:
 	* Adding file reader and particle class
