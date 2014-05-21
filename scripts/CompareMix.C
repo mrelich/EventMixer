@@ -20,7 +20,8 @@ void CompareMix()
   // Specify the input file for mixed files
   //TFile* f_mix = new TFile("../output/mixedShower_Eprim40_ToBeMixed100_nEvents100.root");
   //TFile* f_mix = new TFile("../output/mixedShower_Eprim40_ToBeMixed1000_nEvents100.root");
-  TFile* f_mix = new TFile("../output/mixedShower_Eprim40_ToBeMixed100scale10_nEvents100.root");
+  //TFile* f_mix = new TFile("../output/mixedShower_Eprim40_ToBeMixed100scale10_nEvents100.root");
+  TFile* f_mix = new TFile("../output/mixedShower_Eprim40_ToBeMixed100_scale10_nEvents100.root");
 
   // Specify the input file for G4 showers
   //TFile* f_g4  = new TFile("../../IceBlock/rootfiles/LowEnergyStudy_40_ice_eBeam_np100.root");
@@ -134,7 +135,7 @@ void plotRatio(TProfile* p0,
   p_bot->Update();
 
 
-  c->SaveAs(savedir+append+".png");
+  //c->SaveAs(savedir+append+".png");
 
 }
 

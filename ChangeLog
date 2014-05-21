@@ -1,3 +1,9 @@
+2014-05-21 Matt:
+	* Added runtime options to Mix.cxx
+	* Updated how Mixer functions are called.
+	* Include new function in Mixer to check steps.
+	* Added a few scripts for plotting
+
 2014-05-14 Matt:
 	* Changing file readers purpose to convert into TTree
 		Benefit is that it compresses the data from ~300GB to ~1GB

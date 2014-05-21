@@ -58,6 +58,7 @@ mix:	 			\
 	obj/Particle_Dict.so	\
 	obj/FileReader.so	\
 	obj/Mixer.so		\
+	obj/Event_Dict.so	\
 	obj/Mix.so
 	$(CXX) $+ -o $@ $(CXXFLAGS) $(LDFLAGS) $(links)
 

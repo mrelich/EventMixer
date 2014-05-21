@@ -12,7 +12,7 @@
 
 // My Stuff
 #include "Particle.h"
-#include "FileReader.h"
+#include "Event.h"
 
 // Standard
 #include <sstream>
@@ -22,6 +22,7 @@
 #include "TFile.h"
 #include "TH1D.h"
 #include "TRandom3.h"
+#include "TChain.h"
 
 class Mixer
 {
@@ -30,7 +31,7 @@ class Mixer
 
   // Constructor 
   Mixer(float Eprimary,        // Energy of primary [MeV]  
-	float Edesired,        // Desired energy [MeV]
+	int nPartPerEvent,     // Specify how to scale the particles
 	int nToBeMixed,        // nEvents to mix together
 	int totEvents,         // total events in input file
 	int finalEvents,       // final number of events needed
@@ -52,8 +53,9 @@ class Mixer
  private:
 
   TFile* m_output;                    // output root file
-  FileReader* m_fRead;                // File Reader object
-  std::vector<Particle*> m_parts;     // Vector to hold particles
+  TChain* m_chain;                    // Chain holding events
+  Event*  m_event;                    // Event objects
+  std::vector<Particle> m_parts;      // Vector to hold particles
   TRandom3* m_rand;                   // Random event number generator
   
   int m_tobemixed;                    // nEvents needed to recreate Edesired
@@ -64,7 +66,8 @@ class Mixer
   int m_nbins;                        // Number of bins
   float m_xmin;                       // xmin
   float m_xmax;                       // xmax
-  float m_X0;                         // Radiation length
+  float m_step;                       // step size
+
 };
 
 #endif
