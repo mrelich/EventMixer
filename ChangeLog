@@ -1,3 +1,6 @@
+2014-05-26 Matt:
+	* Added timing info to particle class
+
 2014-05-21 Matt:
 	* Added runtime options to Mix.cxx
 	* Updated how Mixer functions are called.

@@ -42,17 +42,17 @@ void FileReader::setParticles(vector<Particle*> &parts)
   string end   = "End:";
 
   // Variables to be read in
-  // [0,1,2]  == xi, yi, zi
-  // [3,4]    == E, Etot
-  // [5,6,7]  == xf, yf, zf
-  // [8,9,10] == trkID, momID, pdg
-  const int nPars = 11;
+  // [0,1,2,3]  == xi, yi, zi, ti
+  // [4,5]      == E, Etot
+  // [6,7,8,9]  == xf, yf, zf, tf
+  // [10,11,12] == trkID, momID, pdg
+  const int nPars = 13;
   float vars[nPars];
   
   // Loop over and load input
   int prevPos = 0;
   while( !m_input.eof() ){
-    
+
     // Specify some generic char vector
     char buf[512];
 
@@ -74,20 +74,23 @@ void FileReader::setParticles(vector<Particle*> &parts)
     }
 
     // Skip photons
-    if( ((int) vars[10]) == 22 ) continue;
+    if( ((int) vars[12]) == 22 ) continue;
 
     // Now construct the particle
     Particle* p = new Particle(vars[0],     // xi
 			       vars[1],     // yi
 			       vars[2],     // zi
-			       vars[5],     // xf
-			       vars[6],     // yf
-			       vars[7],     // af
-			       vars[4],     // Etot
-			       vars[8],     // trkID
-			       vars[10]);   // pdg
+			       vars[3],     // ti
+			       vars[6],     // xf
+			       vars[7],     // yf
+			       vars[8],     // zf
+			       vars[9],     // tf
+			       vars[5],     // Etot
+			       vars[10],     // trkID
+			       vars[12]);   // pdg
+    //p->print();
     parts.push_back(p);
-
+    
   }// end while loop
 
 }

@@ -84,7 +84,7 @@ void help()
   cout<<endl;
   cout<<"***************************************************"<<endl;
   cout<<"Options: "<<endl;
-  cout<<"\t-e <int>"<<endl;
+  cout<<"\t-n <int>"<<endl;
   cout<<"\t\tSpecify number of events to put in tree"<<endl;
   cout<<"\t-i <filepath>"<<endl;
   cout<<"\t\tSpecify input file path to G4 data"<<endl;
@@ -103,9 +103,10 @@ int main(int argc, char** argv)
 
   // TODO: Add options
   int nEvent = 0;
-  //int nEvent = 1e3;
-  string outname = "test";
-  string inname  = "../../IceBlock/tracks/output_1000000000_40_ice_eBeam_np1.dat";
+  //int nEvent = 1e6;
+  string outname = "eBeam_40MeV_1000000_ice";
+  //string inname  = "../../IceBlock/tracks/output_1000000000_40_ice_eBeam_np1.dat";
+  string inname  = "../../IceBlock/tracks/output_1000000_40_ice_eBeam_np1.dat";
 
   //
   // Options
